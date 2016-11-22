@@ -1,4 +1,4 @@
-(defproject navis/untangled-auth "0.1.0-SNAPSHOT"
+(defproject navis/untangled-auth "0.1.0"
   :description "Support for session auth. Currently targeting openid, but meant to be expanded over time."
   :url "https://github.com/untangled-web/untangled-auth"
   :license {:name "MIT"

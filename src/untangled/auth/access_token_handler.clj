@@ -97,7 +97,9 @@
       (let [openid-config     (-> config :value :openid)
             authority         (:authority openid-config)
             discovery-doc-url (str authority "/.well-known/openid-configuration")]
-        (if-let [discovery-doc (-> discovery-doc-url http/get :body json/read-str)]
+        (if-let [discovery-doc (->> discovery-doc-url (log/spy :info)
+                                 http/get :body json/read-str
+                                 (log/spy :debug "discovery-doc"))]
           (let [issuer          (get discovery-doc "issuer")
                 public-keys-url (get discovery-doc "jwks_uri")
                 public-keys     (-> public-keys-url http/get :body json/read-str (get "keys"))
